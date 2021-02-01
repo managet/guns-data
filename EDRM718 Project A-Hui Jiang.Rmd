@@ -1,0 +1,327 @@
+---
+title: "EDRM 718 Project A-Gun Deaths"
+author: Hui Jiang
+date: January 30 2021
+output: html_notebook
+---
+
+### Description
+
+This report will study the compositions of the intents of gun deaths and individual
+attributes in American in 2012. The data for this study is primarily from the 
+Centers for Disease COntrol ans Prevention's Multiple Cause of Death database 
+provided by Ben Casselman, et al.
+First, I will study the compositions of gun death types in the sample. I will 
+then examine the proportions of different groups in terms of individual 
+attributes.
+
+*Source of data: Centers for Disease COntrol ans Prevention's Multiple Cause of Death database*
+
+### Analysis
+
+In this data set, there are four types of gun death: accidental, homicide, 
+suicide, undetermined. Figure 1 illustrates the composition of the gun death 
+types in 2012.
+
+\newpage
+
+***
+
+*Figure 1. Bar plots with proportions of gun death types in 2012.*
+
+```{r echo=FALSE}
+# 2. Write a report to analyze the data from 2012. Specifically, we are
+# interested in the proportions of different types of gun deaths, the 
+# proportions of each gender type, and the proportion of each race type. 
+# Your report should include graphs, descriptive statistics, and 
+# accompanying narrative. You can see Instructor Report 1 for an example and
+# watch the accompanying videos for an example of completing this type of 
+# analysis. (Your report does not need a press release.)
+
+# read the data and put it in an object called "gun"
+
+gun <- read.csv( "full_data.csv", header = T, sep = ",")
+
+# choose the data from 2012
+
+gun_2012 <- subset(gun, gun$year == 2012)
+
+# calculate the frequencies of different types of gun death in 2012
+
+death_counts_2012 <- table(gun_2012$intent)
+
+# calculate the proportions of different types of gun death in 2012
+
+death_props_2012 <-prop.table(death_counts_2012)
+
+# provide the bar plot of gun death proportions in 2012
+
+barplot(death_props_2012,
+        xlab = "Gun Death",
+        ylab = "Proportions", 
+        ylim = c(0, 0.8))
+
+```
+
+***
+
+Table 1 shows the frequencies and percents for four types of gun death. The 
+sample consists of 2% in the accidental death, 36% in the homicide, 62% in the 
+suicide, and 1% in the undetermined death. Suicide is the most common type in 
+these four types.
+
+***
+
+*Table 1. Frequencies and percents for each type of gun death in 2012.*
+
+```{r echo=FALSE}
+# put the frequencies and proportions in a table
+
+round(cbind(death_counts_2012, death_props_2012), 2)
+
+```
+
+***
+
+Figure 2 illustrates the composition of the gender types in gun death in 2012. 
+From this figure, it is apparent that there are much more males than females.
+
+\newpage
+
+***
+
+*Figure 2. Bar plots with proportions of gender types in 2012.*
+
+```{r echo=FALSE}
+# calculate the frequencies of different gender types in 2012
+
+gender_counts_2012 <- table(gun_2012$sex)
+
+# calculate the proportions of different gender types in 2012
+
+gender_props_2012 <- prop.table(gender_counts_2012)
+
+# provide the bar plot of the gender proportions in 2012
+
+barplot(gender_props_2012,
+        xlab = "Gender",
+        ylab = "Proportions", 
+        ylim = c(0, 1))
+
+```
+
+***
+
+Table 2 shows the frequencies and percents for gender types. There are 14% 
+females and 86% males, which are more than 6 times of females. 
+
+***
+
+*Table 2. Frequencies and percents for each gender in 2012.*
+
+```{r echo=FALSE}
+
+# put the frequencies and proportions in a table
+
+round(cbind(gender_counts_2012, gender_props_2012), 2)
+
+```
+
+***
+
+The sample divides race into Asian/Pacific Islander, black, Hispanic, 
+native American/native Alaskan and white. As Figure 3 illustrated, white people 
+have the highest gun death rate than other three race types. 
+
+\newpage
+
+***
+
+*Figure 3. Bar plots with proportions of race types in 2012.*
+
+```{r echo=FALSE}
+# calculate the frequencies of different race types in 2012
+
+race_counts_2012 <- table(gun_2012$race)
+
+# calculate the proportions of different race types in 2012
+
+race_props_2012 <- prop.table(race_counts_2012)
+race_props_2012
+
+# provide the bar plot of the race proportions in 2012
+
+barplot(race_props_2012,
+        xlab = "Race",
+        ylab = "Proportions", 
+        ylim = c(0, 0.8))
+
+```
+
+***
+
+Table 3 shows the frequencies and percents for race types. There are 1% in 
+Asian/Pacific islander, 24% in black, 9% in Hispanic, 1% in native 
+American/native Alaskan and 65% in white.  
+
+***
+
+*Table 3. Frequencies and percents for each race in 2012.*
+
+```{r echo=FALSE}
+
+# put the frequencies and proportions in a table
+
+round(cbind(race_counts_2012, race_props_2012), 2)
+
+```
+
+***
+
+### Conclusions
+
+I examined the compositions of gun deaths types in American in 2012 and knew the
+proportions of different groups in terms of gender and race. The most primary 
+intent of gun deaths is suicide and then followed by homicide. The proportion 
+of accidental deaths and undetermined deaths are only 2% and 1% respectively.
+
+As for the individual attributes, there are more males in gun deaths than 
+females. Specifically, 86 percent are males and 14 percent are females. White 
+people have a larger proportions to die from gunshot than other races, i.e., 
+black people, Hispanic, Asian/Pacific islander and native American/native 
+Alaskan in turn. The results are helpful to take measures to decrease the gun 
+deaths rate for different groups.
+
+***
+
+```{r}
+# 6. Add to your notebook an analysis of the 2019 data by addressing the same 
+# questions you addressed for 2012.
+
+# read the 2019 data and put it in an object called "gun_2019" 
+gun_2019 <- read.csv( "full_data_19.csv", header = T, sep = ",")
+
+# calculate the frequencies of different types of gun death in 2019
+
+death_counts_2019 <- table(gun_2019$intent)
+
+# calculate the proportions of different types of gun death in 2019
+
+death_props_2019 <-prop.table(death_counts_2019)
+
+death_props_2019
+
+# provide the bar plot of gun death proportions in 2019
+
+barplot(death_props_2019,
+        xlab = "Gun Death",
+        ylab = "Proportions", 
+        ylim = c(0, 0.8))
+
+# calculate the frequencies of different gender types in 2019
+
+gender_counts_2019 <- table(gun_2019$sex)
+
+# calculate the proportions of different gender types in 2019
+
+gender_props_2019 <- prop.table(gender_counts_2019)
+gender_props_2019
+
+# provide the bar plot of the gender proportions in 2019
+
+barplot(gender_props_2019,
+        xlab = "Gender",
+        ylab = "Proportions", 
+        ylim = c(0, 1))
+
+# calculate the frequencies of different race types in 2019
+
+race_counts_2019 <- table(gun_2019$race)
+
+# calculate the proportions of different race types
+
+race_props_2019 <- prop.table(race_counts_2019)
+race_props_2019
+
+# provide the bar plot of the race proportions in 2019
+
+barplot(race_props_2019,
+        xlab = "Race",
+        ylab = "Proportions", 
+        ylim = c(0, 0.8))
+
+```
+
+
+```{r}
+
+# 7. For each of the variables of interest, compare proportions for the two 
+# years (2012 and 2019) with graphs and descriptive statistics.
+
+# combine the full_data.csv and full_data_19.csv as a new file full_data_all.csv 
+# and read it
+
+gun_all <- read.csv("full_data_all", header = T, sep = ",")
+
+
+# choose the data from 2012 and 2019
+
+gun_201219 <- subset(gun, gun$year == 2012 || 2019)
+
+# construct a two-way table of frequencies of gun deaths type based on year
+
+ses_death_counts <- table(gun_201219$intent, gun_201219$year)
+
+#construct conditional percentages of gun deaths type
+
+ses_death_prop <- 100 * prop.table(ses_death_counts, 1)
+
+# provide a stacked bar plot
+
+barplot(ses_death_prop,
+        xlab = "Year",
+        ylab = "Percents of gun deaths",
+        legend = c("accidental", "homicide", "suicide", "undetermined"),
+        args.legend = list(title = "Gun deaths type", cex = .7))
+
+```
+
+```{r}
+
+# construct a two-way table of frequencies of gender type based on year
+
+ses_gender_counts <- table(gun_201219$sex, gun_201219$year)
+
+#construct conditional percentages of gun deaths type
+
+ses_gender_prop <- 100 * prop.table(ses_gender_counts, 1)
+
+# provide a stacked bar plot
+
+barplot(ses_gender_prop,
+        xlab = "Year",
+        ylab = "Percents of gender",
+        legend = c("Female", "Male"),
+        args.legend = list(title = "Gender", cex = .7))
+```
+
+```{r}
+
+# construct a two-way table of frequencies of race type based on year
+
+ses_race_counts <- table(gun_201219$race, gun_201219$year)
+
+#construct conditional percentages of race type type
+
+ses_race_prop <- 100 * prop.table(ses_race_counts, 1)
+
+# provide a stacked bar plot
+
+barplot(ses_race_prop,
+        xlab = "Year",
+        ylab = "Percents of race",
+        legend = c("Asian/Pacific Islander", "Black", "Hispanic", "Native American/Native Alaskan", "White"),
+        args.legend = list(title = "Race", cex = .7))
+
+```
+

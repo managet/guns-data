@@ -1,0 +1,8 @@
+"0","# 6. Add to your notebook an analysis of the 2019 data by addressing the same "
+"0","# questions you addressed for 2012."
+"0",""
+"0","# read the 2019 data and put it in an object called ""gun_2019"" "
+"0","gun_2019 <- read.csv( ""full_data_19.csv"", header = T, sep = "","")"
+"2","无法打开文件'full_data_19.csv': No such file or directory"
+"2","Error in file(file, ""rt"") : 鏃犳硶鎵撳紑閾剧粨
+"
