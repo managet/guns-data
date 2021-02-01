@@ -274,7 +274,8 @@ ses_death_counts <- table(gun_201219$intent, gun_201219$year)
 
 #construct conditional percentages of gun deaths type
 
-ses_death_prop <- 100 * prop.table(ses_death_counts, 1)
+ses_death_prop <- 100 * prop.table(ses_death_counts, 2)
+round(ses_death_prop)
 
 # provide a stacked bar plot
 
@@ -294,7 +295,8 @@ ses_gender_counts <- table(gun_201219$sex, gun_201219$year)
 
 #construct conditional percentages of gun deaths type
 
-ses_gender_prop <- 100 * prop.table(ses_gender_counts, 1)
+ses_gender_prop <- 100 * prop.table(ses_gender_counts, 2)
+round(ses_gender_prop)
 
 # provide a stacked bar plot
 
@@ -313,7 +315,8 @@ ses_race_counts <- table(gun_201219$race, gun_201219$year)
 
 #construct conditional percentages of race type type
 
-ses_race_prop <- 100 * prop.table(ses_race_counts, 1)
+ses_race_prop <- 100 * prop.table(ses_race_counts, 2)
+round(ses_race_prop)
 
 # provide a stacked bar plot
 
